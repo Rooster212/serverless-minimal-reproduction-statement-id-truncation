@@ -1,0 +1,20 @@
+service: statement-id-truncation-issue
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+functions:
+  ABCThisIsAVeryLongFunctionNameThatWillCertainlyReproduceTheIssue:
+    handler: handler.hello
+    events:
+      - eventBridge:
+          eventBus: default
+          pattern:
+            source:
+              - test
+            detail-type:
+              - test
